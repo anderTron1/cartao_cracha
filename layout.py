@@ -59,7 +59,7 @@ class Card_format:
                 lum_img = Image.new('L', (height,width),0)
                   
                 draw = ImageDraw.Draw(lum_img)
-                draw.rounded_rectangle(((0, 0), (height, width)), 90, fill="white")
+                draw.rounded_rectangle(((0, 0), (height, width)),fill="white")
                 
                 img_arr =np.array(imgPNG)
                 lum_img_arr =np.array(lum_img)
@@ -251,7 +251,7 @@ class main:
                                  KEY_INPUT_CONVERSION: valuer[KEY_INPUT_CONVERSION],
                                  KEY_INPUT_WATER_BAPTISM: valuer[KEY_INPUT_WATER_BAPTISM]
                                  }
-                self.card_format.editImageBackground(values_inputs, self.path_imgs+'\CRACHA_alterado.png', self.path_imgs+'\cartao_fundo_Teste.jpeg')
+                self.card_format.editImageBackground(values_inputs, self.path_imgs+'\cartao_fundo.jpeg', self.path_imgs+'\cartao_fundo_Teste.jpeg')
                 img_background_generate = True
                 window.Element(KEY_TEXT_GENERAT_IMG_BACKGROUND).Update(value='Imagem gerada!')
                 #print('cartão de fundo gerado')
