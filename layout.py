@@ -16,7 +16,6 @@ import numpy as np
 
 import unicodedata
 import re
-
 from datetime import timedelta, date
 
 '''=======FRONT SIDE OF CARD=============='''
