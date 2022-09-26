@@ -43,6 +43,7 @@ KEY_TEXT_GENERAT_IMG_BACKGROUND= '--TEXT_GENERATE_IMG_BACKGROUND--'
 
 KEY_BTN_GENERATE_PDF = '--GENERATE_PDF_IMAGENS--'
 
+
 class Card_format:
     def __init__(self):
         super()
