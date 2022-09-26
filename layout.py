@@ -21,6 +21,7 @@ from datetime import timedelta, date
 
 '''=======FRONT SIDE OF CARD=============='''
 KEY_IMPUT_NAME = '--NAME--'
+KEY_INPUT_REGISTRATION = '--REGISTRATION--'
 KEY_INPUT_ACTIVITY = '-ACTIVITY--'
 KEY_INPUT_BIRTH = '--BIRTH--'
 KEY_INPUT_EMISSION = '--EMISSION--'
@@ -86,15 +87,17 @@ class Card_format:
         img = cv2.imread(imgToEdit)
         #imgPNG = cv2.imread('image.png')
         
-        cv2.putText(img,values[KEY_IMPUT_NAME],(100,330),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_ACTIVITY],(120,420),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_BIRTH],(490,420),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_EMISSION],(120,510),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_VALIDITY],(440,510),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_IDENTITY_DOCUMENT],(80,610),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img,values[KEY_INPUT_CPF],(420,610),cv2.FONT_HERSHEY_TRIPLEX,1,0)
+        cv2.putText(img,values[KEY_IMPUT_NAME],(100,325),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_REGISTRATION],(750,325),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_ACTIVITY],(160,420),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_BIRTH],(510,420),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_EMISSION],(160,510),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_VALIDITY],(470,510),cv2.QT_FONT_NORMAL,0.9,0)
+        cv2.putText(img,values[KEY_INPUT_IDENTITY_DOCUMENT],(85,610),cv2.QT_FONT_NORMAL,0.7,0)
+        cv2.putText(img,values[KEY_INPUT_CPF],(420,610),cv2.QT_FONT_NORMAL,0.9,0)
         
         cv2.imwrite(nameNewImage,img)
+        #789538999-9 SSP/MT
         
         self.trataImage(nameNewImage, path_img_member)
         
@@ -102,12 +105,12 @@ class Card_format:
     def editImageBackground(self, values, imgToEdit, nameNewImage):
         img = cv2.imread(imgToEdit)
         
-        cv2.putText(img, values[KEY_INPUT_FATHER],(120,119),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img, values[KEY_INPUT_MOTHER],(120,210),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img, values[KEY_INPUT_NATURALNESS],(120,300),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img, values[KEY_INPUT_SEX],(755,300),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img, values[KEY_INPUT_CONVERSION],(105,395),cv2.FONT_HERSHEY_TRIPLEX,1,0)
-        cv2.putText(img, values[KEY_INPUT_WATER_BAPTISM],(390,395),cv2.FONT_HERSHEY_TRIPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_FATHER],(120,119),cv2.FONT_HERSHEY_SIMPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_MOTHER],(120,210),cv2.FONT_HERSHEY_SIMPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_NATURALNESS],(120,300),cv2.FONT_HERSHEY_SIMPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_SEX],(755,300),cv2.FONT_HERSHEY_SIMPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_CONVERSION],(105,395),cv2.FONT_HERSHEY_SIMPLEX,1,0)
+        cv2.putText(img, values[KEY_INPUT_WATER_BAPTISM],(390,395),cv2.FONT_HERSHEY_SIMPLEX,1,0)
         
         #cv2.imshow("janela",img)
         
@@ -137,6 +140,7 @@ class main:
     def layout(self):
         tab_card_front = [
                     [sg.T('Nome', size=(15)), sg.Input(key=KEY_IMPUT_NAME)],
+                    [sg.T('Matricula', size=(15)), sg.Input(key=KEY_INPUT_REGISTRATION, size=(15))],
                     [sg.T('Atividade', size=(15)), sg.Combo(['CONGREGADO', 'MEMBRO','AUXILIAR', 'DIACONO', 'PRESBITERO', 'EVANGELISTA', 'PASTOR'], key=KEY_INPUT_ACTIVITY, readonly=True)],
                     [sg.T('Data de Nascimento', size=(15)), sg.Input(key=KEY_INPUT_BIRTH, disabled=True, size=(10)), sg.CalendarButton('Data', target=KEY_INPUT_BIRTH, pad=None, key='--CALEND_BIRTH--', format=('%d/%m/%y'))],
                     [sg.T('Data de Emissão', size=(15)), sg.Input(default_text = self.new_date ,key=KEY_INPUT_EMISSION, disabled=True, size=(10)), sg.CalendarButton('Data', target=KEY_INPUT_EMISSION, pad=None, key='--CALEND_EMISSION--', format=('%d/%m/%y'))],
@@ -222,6 +226,7 @@ class main:
                 
             if event == KEY_BTN_GENERATE:
                 values_inputs = {KEY_IMPUT_NAME: self.remove_special_characters(valuer[KEY_IMPUT_NAME]),
+                                 KEY_INPUT_REGISTRATION: valuer[KEY_INPUT_REGISTRATION],
                                  KEY_INPUT_ACTIVITY: valuer[KEY_INPUT_ACTIVITY],
                                  KEY_INPUT_BIRTH: valuer[KEY_INPUT_BIRTH],
                                  KEY_INPUT_EMISSION: valuer[KEY_INPUT_EMISSION],
